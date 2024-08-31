@@ -55,6 +55,7 @@ int main() {
 
     atexit(disconnect);
     signal(SIGINT, handler);
+    signal(SIGPIPE, SIG_IGN);
 
     fcntl(0, F_SETFL, fcntl(0, F_GETFL) | O_NONBLOCK);
     fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK);
@@ -89,6 +90,9 @@ int main() {
         if (fds[1].revents & POLLIN) {
             while ((size = read(fd, buf, sizeof(buf))) > 0) {
                 write(1, buf, size);
+            }
+            if (size == 0) {
+                break;
             }
         }
     }
