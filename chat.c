@@ -13,9 +13,9 @@ int size;
 char buf[80];
 
 #define REP "Reply: "
-#define INS "\033[s\n\033[1F\033[1L"
-#define RES "\033[u\033[1B"
-#define BAK "\033[1F\033[2K"
+#define INS "\e[s\n\e[1F\e[1L"
+#define RES "\e[u\e[1B"
+#define BAK "\e[1F\e[2K"
 
 #define SEND_TIME(fmt) {                                \
     time_t tt = time(NULL);                             \

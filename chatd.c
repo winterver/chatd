@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <errno.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -26,7 +25,7 @@ void handle_connection() {
         ptr->events = POLLIN;
     }
     else {
-        char exceed[] = "Max clients exceeded\n";
+        char exceed[] = "Max clients exceeded";
         send(fd, exceed, sizeof(exceed), 0);
         close(fd);
     }
